@@ -1,0 +1,26 @@
+.footer {
+    display: flex;
+    background: #0067A3;
+    align-items: center;
+    justify-content: space-between;
+    padding: 17px 20px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    color: #FFFFFF;
+    height: 8vh;
+}
+
+.footer__tasks-count {
+    display: flex;
+}
+
+.tasks-count__text {
+    margin: 0;
+}
+
+.margin-from-count {
+    margin-right: 36px;
+}

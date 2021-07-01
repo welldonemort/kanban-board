@@ -1,0 +1,34 @@
+.add-btn {
+    border: none;
+    display: flex;
+    align-items: center;
+    background: none;
+    cursor: pointer;
+    padding: 5px;
+    margin-top: 17px;
+}
+
+.add-btn:hover {
+    background: #FFFFFF;
+    border-radius: 5px;
+}
+
+.add-btn-disabled {
+    pointer-events: none;
+    -webkit-filter: sepia(80%);
+    filter: sepia(80%);
+}
+
+.add-btn__plus {
+    margin-right: 5px;
+}
+
+.add-btn__txt {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    color: #5E6C84;
+    margin: 0;
+}
