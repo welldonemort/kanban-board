@@ -7,8 +7,9 @@ const Board = ({ dataMock, addBtnHandler, setTasks }) => {
 
   return (
     <div className="board">
-      {dataMock.map((i) => (
+      {dataMock.map((i, idx) => (
         <BoardItem
+          key={`board-item-${idx}`}
           title={i.title}
           tasksList={i.issues}
           addBtnHandler={addBtnHandler}
