@@ -1,102 +1,102 @@
-import React from 'react';
-import './App.css';
-import Header from '../Header/Header.jsx';
-import Board from '../Board/Board.jsx';
-import Footer from '../Footer/Footer.jsx';
-import ReactRouterRoute from '../../routing/Router.jsx';
+import React from "react";
+import "./App.css";
+import Header from "../Header/Header.jsx";
+import Board from "../Board/Board.jsx";
+import Footer from "../Footer/Footer.jsx";
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
     this.state = {
       dataMock: [
         {
-          title: 'Backlog',
+          title: "Backlog",
           issues: [
             {
-              id: 'task1',
-              name: 'Login page – performance issues'
+              id: "task1",
+              name: "Login page – performance issues",
             },
             {
-              id: 'task2',
-              name: 'Sprint bugfix'
+              id: "task2",
+              name: "Sprint bugfix",
             },
             {
-              id: 'task3',
-              name: 'Shop page – performance issues'
+              id: "task3",
+              name: "Shop page – performance issues",
             },
             {
-              id: 'task4',
-              name: 'Checkout bugfix'
+              id: "task4",
+              name: "Checkout bugfix",
             },
             {
-              id: 'task5',
-              name: 'Shop bug1'
+              id: "task5",
+              name: "Shop bug1",
             },
             {
-              id: 'task6',
-              name: 'Shop bug2'
+              id: "task6",
+              name: "Shop bug2",
             },
             {
-              id: 'task7',
-              name: 'Shop bug3'
+              id: "task7",
+              name: "Shop bug3",
             },
             {
-              id: 'task8',
-              name: 'Shop bug4'
+              id: "task8",
+              name: "Shop bug4",
             },
             {
-              id: 'task9',
-              name: 'Shop bug5'
+              id: "task9",
+              name: "Shop bug5",
             },
             {
-              id: 'task10',
-              name: 'Shop bug6'
+              id: "task10",
+              name: "Shop bug6",
             },
             {
-              id: 'task11',
-              name: 'Shop page – performance issues'
+              id: "task11",
+              name: "Shop page – performance issues",
             },
             {
-              id: 'task12',
-              name: 'User page – performance issues'
+              id: "task12",
+              name: "User page – performance issues",
             },
             {
-              id: 'task13',
-              name: 'Auth bugfix'
+              id: "task13",
+              name: "Auth bugfix",
             },
             {
-              id: 'task14',
-              name: 'Main page – performance issues'
+              id: "task14",
+              name: "Main page – performance issues",
             },
             {
-              id: 'task15',
-              name: 'Main page bugfix'
+              id: "task15",
+              name: "Main page bugfix",
             },
-          ]
+          ],
         },
         {
-          title: 'Ready',
-          issues: []
+          title: "Ready",
+          issues: [],
         },
         {
-          title: 'In progress',
-          issues: []
+          title: "In progress",
+          issues: [],
         },
         {
-          title: 'Finished',
-          issues: []
-        }
+          title: "Finished",
+          issues: [],
+        },
       ],
-    }
+    };
   }
 
   backLogHandle = () => {
     //переменные
     const { dataMock } = this.state;
-    const backlogList = document.querySelector('#list-1');
-    const backlogColumn = document.querySelector('#column-1');
-    const btnAdd = document.querySelector('#btn-1');
+    const backlogList = document.querySelector("#list-1");
+    const backlogColumn = document.querySelector("#column-1");
+    const btnAdd = document.querySelector("#btn-1");
     const input = document.createElement("input");
     const btnSubmit = document.createElement("button");
 
@@ -109,18 +109,18 @@ class App extends React.Component {
     backlogColumn.appendChild(btnSubmit);
 
     //после нажатия submit
-    btnSubmit.addEventListener('click', () => {
-      if (input.value !== '') {
-        dataMock[0].issues.push({ id: 'dvscfds', name: input.value });
+    btnSubmit.addEventListener("click", () => {
+      if (input.value !== "") {
+        dataMock[0].issues.push({ id: "dvscfds", name: input.value });
         this.setState({ dataMock: dataMock });
         btnAdd.style.display = "flex";
         input.style.display = "none";
         btnSubmit.style.display = "none";
       } else {
-        alert('Please, make sure the name of task is not blank!');
+        alert("Please, make sure the name of task is not blank!");
       }
-    })
-  }
+    });
+  };
 
   othersHandle = (id) => {
     //переменные
@@ -149,9 +149,9 @@ class App extends React.Component {
     });
 
     //после нажатия submit
-    btnSubmit.addEventListener('click', () => {
+    btnSubmit.addEventListener("click", () => {
       const opt = dropdown.options[dropdown.selectedIndex].innerHTML;
-      dataMock[`${id.slice(4) - 1}`].issues.push({ id: 'dvscfds', name: opt });
+      dataMock[`${id.slice(4) - 1}`].issues.push({ id: "dvscfds", name: opt });
 
       //убираем задачу из предыдущего столбца
       for (let i = 0; i < dataMock[`${id.slice(4) - 2}`].issues.length; i++) {
@@ -164,27 +164,29 @@ class App extends React.Component {
       btnAdd.style.display = "flex";
       dropdown.style.display = "none";
       btnSubmit.style.display = "none";
-    })
-  }
+    });
+  };
 
   addBtnHandler = (title, id) => {
-    if (title === 'Backlog') {
+    if (title === "Backlog") {
       this.backLogHandle();
-    }
-    else {
+    } else {
       this.othersHandle(id);
     }
-  }
+  };
 
   render() {
     return (
       <>
         {/* <ReactRouterRoute /> */}
         <Header />
-        <Board dataMock={this.state.dataMock} addBtnHandler={this.addBtnHandler}/>
-        <Footer dataMock={this.state.dataMock}/>
+        <Board
+          dataMock={this.state.dataMock}
+          addBtnHandler={this.addBtnHandler}
+        />
+        <Footer dataMock={this.state.dataMock} />
       </>
-    )
+    );
   }
 }
 

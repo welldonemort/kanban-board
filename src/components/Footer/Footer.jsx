@@ -16,7 +16,7 @@ const Footer = ({ dataMock }) => {
                 </p>
             </div>
             <div className="tasks-creator">
-                Kanban board by welldonemort, 2021
+                ToDoList, 2023
             </div>
         </div>
     );
