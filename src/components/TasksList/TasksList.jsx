@@ -1,9 +1,9 @@
 import React from "react";
 import "./TasksList.css";
 
-const TasksList = ({ tasks, id, addBtnHandler, title }) => {
+const TasksList = ({ tasks, id }) => {
   return (
-    <div className="tasks-list" id={id}>
+    <div id={id} className="tasks-list">
       {tasks.map((item) => (
         <div
           className="task"

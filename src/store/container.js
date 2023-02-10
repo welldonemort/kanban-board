@@ -9,8 +9,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleIncrementClick: () => dispatch({ type: "INCREMENT" }),
-    handleDecrementClick: () => dispatch({ type: "DECREMENT" }),
+    setTasks: (new_tasks) =>
+      dispatch({ type: "SET_TASKS", payload: new_tasks }),
   };
 };
 

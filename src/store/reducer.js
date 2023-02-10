@@ -82,10 +82,8 @@ const tasks = {
 
 export const countReducer = (state = tasks, action) => {
   switch (action.type) {
-    case "INCREMENT":
-      return state + 1;
-    case "DECREMENT":
-      return state - 1;
+    case "SET_TASKS":
+      return action.payload;
     default:
       return state;
   }
