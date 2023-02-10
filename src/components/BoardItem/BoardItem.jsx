@@ -2,92 +2,25 @@ import "./BoardItem.css";
 import TasksList from "../TasksList/TasksList.jsx";
 import AddMeBtn from "../AddMeBtn/AddMeBtn.jsx";
 import { BrowserRouter as Router } from "react-router-dom";
+import { useState } from "react";
 
 const BoardItem = ({ title, tasksList, count, dataMock, setTasks }) => {
+  const [isAdd, setIsAdd] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+  const [options, setOptions] = useState([]);
+  const [selectedOption, setSelectedOption] = useState("");
+
   const backLogHandle = () => {
-    //переменные
-    const backlogList = document.querySelector("#list-1");
-    const backlogColumn = document.querySelector("#column-1");
-    const btnAdd = document.querySelector("#btn-1");
-
-    const input = document.createElement("input");
-
-    const btnSubmit = document.createElement("button");
-
-    //после нажатия add
-    btnAdd.style.display = "none";
-
-    input.classList.add("input");
-    backlogList.appendChild(input);
-
-    btnSubmit.classList.add("submit-btn");
-    btnSubmit.innerText = "Submit";
-    backlogColumn.appendChild(btnSubmit);
-
-    //после нажатия submit
-    btnSubmit.addEventListener("click", () => {
-      if (input.value !== "") {
-        dataMock[0].issues.push({ id: "dvscfds", name: input.value });
-
-        setTasks({ dataMock: dataMock });
-
-        btnAdd.style.display = "flex";
-        input.style.display = "none";
-        btnSubmit.style.display = "none";
-      } else {
-        alert("Please, make sure the name of task is not blank!");
-      }
-    });
+    setIsAdd(true);
   };
 
   const othersHandle = (id) => {
-    //переменные
-    console.log(`${id.slice(4) - 2}`);
-    const currentColumnTasks = dataMock[`${id.slice(4) - 2}`].issues;
+    setIsAdd(true);
 
-    const currentList = document.querySelector(`#list-${id.slice(4)}`);
-    const currentColumn = document.querySelector(`#column-${id.slice(4)}`);
-    const btnAdd = document.querySelector(`#btn-${id.slice(4)}`);
-    const dropdown = document.createElement("select");
-    const btnSubmit = document.createElement("button");
+    let options = dataMock[`${id.slice(4) - 2}`].issues;
 
-    //после нажатия add
-    btnAdd.style.display = "none";
-    dropdown.classList.add("dropdown");
-    currentList.appendChild(dropdown);
-    btnSubmit.classList.add("submit-btn");
-    btnSubmit.innerText = "Submit";
-    currentColumn.appendChild(btnSubmit);
-    //наполнение дропдауна
-    currentColumnTasks.forEach((item) => {
-      const option = document.createElement("option");
-      option.appendChild(document.createTextNode(`${item.name}`));
-      // option.value = `${item.name}`;
-      dropdown.appendChild(option);
-    });
-
-    //после нажатия submit
-    btnSubmit.addEventListener("click", () => {
-      const opt = dropdown.options[dropdown.selectedIndex].innerHTML;
-      dataMock[`${id.slice(4) - 1}`].issues.push({
-        id: "dvscfds",
-        name: opt,
-      });
-
-      //убираем задачу из предыдущего столбца
-      for (let i = 0; i < dataMock[`${id.slice(4) - 2}`].issues.length; i++) {
-        if (dataMock[`${id.slice(4) - 2}`].issues[i].name === opt) {
-          dataMock[`${id.slice(4) - 2}`].issues.splice(i, 1);
-          break;
-        }
-      }
-
-      setTasks({ dataMock: dataMock });
-
-      btnAdd.style.display = "flex";
-      dropdown.style.display = "none";
-      btnSubmit.style.display = "none";
-    });
+    setOptions([...options]);
+    setSelectedOption(options[0].name);
   };
 
   const addBtnHandler = (id) => {
@@ -96,6 +29,44 @@ const BoardItem = ({ title, tasksList, count, dataMock, setTasks }) => {
     } else {
       othersHandle(id);
     }
+  };
+
+  const submitBtnHandler = (id) => {
+    if (title === "Backlog") {
+      submitBacklog();
+    } else {
+      submitOthers(id);
+    }
+  };
+
+  const submitBacklog = () => {
+    if (inputValue !== "") {
+      dataMock[0].issues.push({ id: "task", name: inputValue });
+      setTasks({ dataMock: dataMock });
+      setIsAdd(false);
+    } else {
+      alert("Please, make sure the name of task is not blank!");
+    }
+  };
+
+  const submitOthers = (id) => {
+    if (!selectedOption) return;
+
+    dataMock[`${id.slice(5) - 1}`].issues.push({
+      id: "task",
+      name: selectedOption,
+    });
+
+    let issues = dataMock[`${id.slice(5) - 2}`].issues;
+
+    issues.forEach((issue, i) => {
+      if (issue.name === selectedOption) {
+        issues.splice(i, 1);
+      }
+    });
+
+    setTasks({ dataMock: dataMock });
+    setIsAdd(false);
   };
 
   return (
@@ -114,14 +85,31 @@ const BoardItem = ({ title, tasksList, count, dataMock, setTasks }) => {
             id={`list-${count}`}
             addBtnHandler={addBtnHandler}
             title={title}
+            isAdd={isAdd}
+            inputValue={inputValue}
+            setInputValue={setInputValue}
+            options={options}
+            selectedOption={selectedOption}
+            setSelectedOption={setSelectedOption}
           />
 
-          <AddMeBtn
-            addBtnHandler={addBtnHandler}
-            title={title}
-            id={`btn-${count}`}
-            dataMock={dataMock}
-          />
+          {!isAdd && (
+            <AddMeBtn
+              addBtnHandler={addBtnHandler}
+              title={title}
+              id={`btn-${count}`}
+              dataMock={dataMock}
+            />
+          )}
+
+          {isAdd && (
+            <button
+              className="submit-btn"
+              onClick={() => submitBtnHandler(`list-${count}`)}
+            >
+              Submit
+            </button>
+          )}
         </div>
       </div>
     </Router>

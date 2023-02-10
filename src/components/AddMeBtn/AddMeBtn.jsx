@@ -1,7 +1,7 @@
 import React from "react";
 import "./AddMeBtn.css";
 
-const AddMeBtn = ({ addBtnHandler, title, id, dataMock }) => {
+const AddMeBtn = ({ addBtnHandler, id, dataMock }) => {
   const previewColumnTasksCount =
     id.slice(4) > 1 ? dataMock[`${id.slice(4) - 2}`].issues.length : "";
 
