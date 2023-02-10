@@ -7,93 +7,13 @@ import Footer from "../Footer/Footer.jsx";
 class App extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      dataMock: [
-        {
-          title: "Backlog",
-          issues: [
-            {
-              id: "task1",
-              name: "Login page – performance issues",
-            },
-            {
-              id: "task2",
-              name: "Sprint bugfix",
-            },
-            {
-              id: "task3",
-              name: "Shop page – performance issues",
-            },
-            {
-              id: "task4",
-              name: "Checkout bugfix",
-            },
-            {
-              id: "task5",
-              name: "Shop bug1",
-            },
-            {
-              id: "task6",
-              name: "Shop bug2",
-            },
-            {
-              id: "task7",
-              name: "Shop bug3",
-            },
-            {
-              id: "task8",
-              name: "Shop bug4",
-            },
-            {
-              id: "task9",
-              name: "Shop bug5",
-            },
-            {
-              id: "task10",
-              name: "Shop bug6",
-            },
-            {
-              id: "task11",
-              name: "Shop page – performance issues",
-            },
-            {
-              id: "task12",
-              name: "User page – performance issues",
-            },
-            {
-              id: "task13",
-              name: "Auth bugfix",
-            },
-            {
-              id: "task14",
-              name: "Main page – performance issues",
-            },
-            {
-              id: "task15",
-              name: "Main page bugfix",
-            },
-          ],
-        },
-        {
-          title: "Ready",
-          issues: [],
-        },
-        {
-          title: "In progress",
-          issues: [],
-        },
-        {
-          title: "Finished",
-          issues: [],
-        },
-      ],
-    };
+    this.state = props.tasks;
   }
 
   backLogHandle = () => {
     //переменные
     const { dataMock } = this.state;
+
     const backlogList = document.querySelector("#list-1");
     const backlogColumn = document.querySelector("#column-1");
     const btnAdd = document.querySelector("#btn-1");
@@ -178,7 +98,6 @@ class App extends React.Component {
   render() {
     return (
       <>
-        {/* <ReactRouterRoute /> */}
         <Header />
         <Board
           dataMock={this.state.dataMock}
