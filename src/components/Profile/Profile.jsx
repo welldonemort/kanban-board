@@ -30,9 +30,8 @@ const Profile = () => {
             alt="ic: rectangle"
             className="rectangle"
           />
-          <div id="myDropdown" class="dropdown-content">
+          <div id="myDropdown" className="dropdown-content">
             <a href="#">Profile</a>
-            <a href="#">Log out</a>
           </div>
         </div>
       )}
