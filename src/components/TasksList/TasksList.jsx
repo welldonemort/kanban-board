@@ -12,7 +12,6 @@ const TasksList = ({
   selectedOption,
 }) => {
   let id_num = +id.split("-")[1];
-  console.log(id_num);
 
   return (
     <div id={id} className="tasks-list">

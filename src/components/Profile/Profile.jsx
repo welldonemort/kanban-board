@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../Header/Header.css";
 import "./Profile.css";
+import { NavLink } from "react-router-dom";
 
 const Profile = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -31,7 +32,7 @@ const Profile = () => {
             className="rectangle"
           />
           <div id="myDropdown" className="dropdown-content">
-            <a href="#">Profile</a>
+            <NavLink to="/accounting">Accounting</NavLink>
           </div>
         </div>
       )}

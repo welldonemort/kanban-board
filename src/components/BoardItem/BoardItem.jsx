@@ -1,7 +1,6 @@
 import "./BoardItem.css";
 import TasksList from "../TasksList/TasksList.jsx";
 import AddMeBtn from "../AddMeBtn/AddMeBtn.jsx";
-import { BrowserRouter as Router } from "react-router-dom";
 import { useState } from "react";
 
 const BoardItem = ({ title, tasksList, count, dataMock, setTasks }) => {
@@ -70,49 +69,47 @@ const BoardItem = ({ title, tasksList, count, dataMock, setTasks }) => {
   };
 
   return (
-    <Router>
-      <div className="board-item">
-        <span className="board-item__title">{title}</span>
+    <div className="board-item">
+      <span className="board-item__title">{title}</span>
 
-        <div
-          className="scroll-holder"
-          id={`column-${count}`}
-          onDrop={() => addBtnHandler(`btn-${count}`)}
-        >
-          <TasksList
-            className="tasks-list"
-            tasks={tasksList}
-            id={`list-${count}`}
+      <div
+        className="scroll-holder"
+        id={`column-${count}`}
+        onDrop={() => addBtnHandler(`btn-${count}`)}
+      >
+        <TasksList
+          className="tasks-list"
+          tasks={tasksList}
+          id={`list-${count}`}
+          addBtnHandler={addBtnHandler}
+          title={title}
+          isAdd={isAdd}
+          inputValue={inputValue}
+          setInputValue={setInputValue}
+          options={options}
+          selectedOption={selectedOption}
+          setSelectedOption={setSelectedOption}
+        />
+
+        {!isAdd && (
+          <AddMeBtn
             addBtnHandler={addBtnHandler}
             title={title}
-            isAdd={isAdd}
-            inputValue={inputValue}
-            setInputValue={setInputValue}
-            options={options}
-            selectedOption={selectedOption}
-            setSelectedOption={setSelectedOption}
+            id={`btn-${count}`}
+            dataMock={dataMock}
           />
+        )}
 
-          {!isAdd && (
-            <AddMeBtn
-              addBtnHandler={addBtnHandler}
-              title={title}
-              id={`btn-${count}`}
-              dataMock={dataMock}
-            />
-          )}
-
-          {isAdd && (
-            <button
-              className="submit-btn"
-              onClick={() => submitBtnHandler(`list-${count}`)}
-            >
-              Submit
-            </button>
-          )}
-        </div>
+        {isAdd && (
+          <button
+            className="submit-btn"
+            onClick={() => submitBtnHandler(`list-${count}`)}
+          >
+            Submit
+          </button>
+        )}
       </div>
-    </Router>
+    </div>
   );
 };
 
