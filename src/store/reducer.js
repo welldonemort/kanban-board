@@ -1,4 +1,6 @@
-const tasks = {
+const tasks_local = localStorage.getItem("tasks");
+
+let tasks = {
   dataMock: [
     {
       title: "Backlog",
@@ -80,9 +82,14 @@ const tasks = {
   ],
 };
 
+if (tasks_local) {
+  tasks = JSON.parse(tasks_local);
+}
+
 export const countReducer = (state = tasks, action) => {
   switch (action.type) {
     case "SET_TASKS":
+      localStorage.setItem("tasks", JSON.stringify(action.payload));
       return action.payload;
     default:
       return state;
