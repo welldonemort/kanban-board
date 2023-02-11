@@ -66,11 +66,11 @@ const tasks = {
       ],
     },
     {
-      title: "Ready",
+      title: "In progress",
       issues: [],
     },
     {
-      title: "In progress",
+      title: "Ready",
       issues: [],
     },
     {
