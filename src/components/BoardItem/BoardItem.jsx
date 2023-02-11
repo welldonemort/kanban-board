@@ -89,6 +89,8 @@ const BoardItem = ({ title, tasksList, count, dataMock, setTasks }) => {
           options={options}
           selectedOption={selectedOption}
           setSelectedOption={setSelectedOption}
+          setTasks={setTasks}
+          dataMock={dataMock}
         />
 
         {!isAdd && (

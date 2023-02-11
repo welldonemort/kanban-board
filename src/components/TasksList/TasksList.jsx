@@ -10,8 +10,15 @@ const TasksList = ({
   options,
   setSelectedOption,
   selectedOption,
+  setTasks,
+  dataMock
 }) => {
   let id_num = +id.split("-")[1];
+
+  const deleteTask = (idx) => {
+    tasks.splice(idx, 1);
+    setTasks({ dataMock: dataMock });
+  }
 
   return (
     <div id={id} className="tasks-list">
@@ -25,6 +32,9 @@ const TasksList = ({
           }}
         >
           {item.name}
+
+          <img src="/delete.svg" alt="delete-ic" className="task__delete" onClick={() => deleteTask(idx)} />
+          {/* <span onClick={() => deleteTask(idx)} ><img src="/delete.svg" alt="" onClick={() => deleteTask(idx)} /></span> */}
         </div>
       ))}
 
