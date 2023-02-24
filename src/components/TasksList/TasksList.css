@@ -1,17 +1,21 @@
+.task-holder {
+  z-index: 1000;
+}
+
 .task {
-    background: #FFFFFF;
-    border-radius: 5px;
-    margin-top: 15px;
-    padding: 8px;
-    display: flex;
-    justify-content: space-between;
+  background: #ffffff;
+  border-radius: 5px;
+  margin-top: 15px;
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .task__delete {
-    width: 16px;
-    height: 16px;
+  width: 16px;
+  height: 16px;
 }
 
 .task__delete:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }

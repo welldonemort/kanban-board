@@ -11,30 +11,27 @@ const TasksList = ({
   setSelectedOption,
   selectedOption,
   setTasks,
-  dataMock
+  dataMock,
 }) => {
   let id_num = +id.split("-")[1];
 
   const deleteTask = (idx) => {
     tasks.splice(idx, 1);
     setTasks({ dataMock: dataMock });
-  }
+  };
 
   return (
     <div id={id} className="tasks-list">
       {tasks.map((item, idx) => (
-        <div
-          key={`task-${idx}`}
-          className="task"
-          draggable
-          onDragEnd={(e) => {
-            console.log(e);
-          }}
-        >
+        <div key={`task-${idx}`} className="task">
           {item.name}
 
-          <img src="/delete.svg" alt="delete-ic" className="task__delete" onClick={() => deleteTask(idx)} />
-          {/* <span onClick={() => deleteTask(idx)} ><img src="/delete.svg" alt="" onClick={() => deleteTask(idx)} /></span> */}
+          <img
+            src="/delete.svg"
+            alt="delete-ic"
+            className="task__delete"
+            onClick={() => deleteTask(idx)}
+          />
         </div>
       ))}
 
