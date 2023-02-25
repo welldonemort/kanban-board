@@ -1,7 +1,7 @@
 import "./BoardItem.css";
 import TasksList from "../TasksList/TasksList.jsx";
 import AddMeBtn from "../AddMeBtn/AddMeBtn.jsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const BoardItem = ({ title, tasksList, count, dataMock, setTasks }) => {
   const [isAdd, setIsAdd] = useState(false);
@@ -68,15 +68,39 @@ const BoardItem = ({ title, tasksList, count, dataMock, setTasks }) => {
     setIsAdd(false);
   };
 
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (e.target.className === "board-item") {
+      // e.target.classList.toggle("red");
+    }
+  };
+
+  const handleDrop = (e) => {
+    console.log(e);
+    submitOthers(e.target.id);
+  };
+
+  const handleDragStart = (e) => {
+    setSelectedOption(e.target.innerText);
+  };
+
   return (
-    <div className="board-item">
+    <div
+      id={`list-${count}`}
+      className="board-item"
+      onDragStart={handleDragStart}
+      onDragOver={handleDragOver}
+      onDrop={handleDrop}
+      onDragEnd={(e) => {
+        setSelectedOption(e.target.innerText);
+        submitOthers(`list-${count + 1}`);
+      }}
+    >
       <span className="board-item__title">{title}</span>
 
-      <div
-        className="scroll-holder"
-        id={`column-${count}`}
-        onDrop={() => addBtnHandler(`btn-${count}`)}
-      >
+      <div className="scroll-holder">
         <TasksList
           className="tasks-list"
           tasks={tasksList}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./TasksList.css";
 
 const TasksList = ({
@@ -23,7 +23,12 @@ const TasksList = ({
   return (
     <div id={id} className="tasks-list">
       {tasks.map((item, idx) => (
-        <div key={`task-${idx}`} className="task">
+        <div
+          key={`task-${idx}`}
+          className="task"
+          draggable
+          onDragEnd={(e) => setSelectedOption(e.target.innerText)}
+        >
           {item.name}
 
           <img
