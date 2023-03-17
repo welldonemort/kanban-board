@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import "./TasksList.css";
+import Modal from "../Modal/Modal";
 
 const TasksList = ({
   tasks,
@@ -13,6 +14,9 @@ const TasksList = ({
   setTasks,
   dataMock,
 }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [modalTask, setModalTask] = useState(null);
+
   let id_num = +id.split("-")[1];
 
   const deleteTask = (idx) => {
@@ -20,13 +24,21 @@ const TasksList = ({
     setTasks({ dataMock: dataMock });
   };
 
+  const openModal = (task) => {
+    setModalTask(task);
+    setIsOpen(true);
+  };
+
   return (
     <div id={id} className="tasks-list">
+      {isOpen && <Modal setIsOpen={setIsOpen} title={modalTask?.name} />}
+
       {tasks.map((item, idx) => (
         <div
           key={`task-${idx}`}
           className="task"
           draggable
+          onClick={() => openModal(item)}
           onDragEnd={(e) => setSelectedOption(e.target.innerText)}
         >
           {item.name}

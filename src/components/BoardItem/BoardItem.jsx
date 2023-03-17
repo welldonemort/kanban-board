@@ -1,7 +1,7 @@
 import "./BoardItem.css";
 import TasksList from "../TasksList/TasksList.jsx";
 import AddMeBtn from "../AddMeBtn/AddMeBtn.jsx";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const BoardItem = ({ title, tasksList, count, dataMock, setTasks }) => {
   const [isAdd, setIsAdd] = useState(false);
