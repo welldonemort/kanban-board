@@ -27,10 +27,19 @@ const App = ({ tasks, setTasks }) => {
     );
   };
 
+  const Accounting = () => {
+    return (
+      <>
+        <Header />
+      </>
+    );
+  };
+
   return (
     <Router>
       <Routes>
         <Route path="/" exact element={<Home />} />
+        <Route path="/accounting" exact element={<Accounting />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

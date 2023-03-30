@@ -32,6 +32,7 @@ const Profile = () => {
             className="rectangle"
           />
           <div id="myDropdown" className="dropdown-content">
+            <NavLink to="/">Kanban</NavLink>
             <NavLink to="/accounting">Accounting</NavLink>
           </div>
         </div>
