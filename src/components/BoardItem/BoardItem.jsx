@@ -1,9 +1,17 @@
 import "./BoardItem.css";
 import TasksList from "../TasksList/TasksList.jsx";
 import AddMeBtn from "../AddMeBtn/AddMeBtn.jsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const BoardItem = ({ title, tasksList, count, dataMock, setTasks }) => {
+const BoardItem = ({
+  title,
+  tasksList,
+  count,
+  dataMock,
+  setTasks,
+  dropArea,
+  setDropArea,
+}) => {
   const [isAdd, setIsAdd] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [options, setOptions] = useState([]);
@@ -14,12 +22,23 @@ const BoardItem = ({ title, tasksList, count, dataMock, setTasks }) => {
   };
 
   const othersHandle = (id) => {
-    setIsAdd(true);
+    let options_previous = dataMock[`${id.slice(4) - 2}`]?.issues;
+    let options_next = dataMock[`${id.slice(4)}`]?.issues;
 
-    let options = dataMock[`${id.slice(4) - 2}`].issues;
+    let result = [];
 
-    setOptions([...options]);
-    setSelectedOption(options[0].name);
+    if (options_next) {
+      setOptions([...options_previous, ...options_next]);
+      result = [...options_previous, ...options_next];
+    } else {
+      setOptions([...options_previous]);
+      result = [...options_previous];
+    }
+
+    if (result.length) {
+      setSelectedOption(result[0].name);
+      setIsAdd(true);
+    }
   };
 
   const addBtnHandler = (id) => {
@@ -48,12 +67,15 @@ const BoardItem = ({ title, tasksList, count, dataMock, setTasks }) => {
     }
   };
 
-  const submitOthers = (id) => {
-    if (!selectedOption) return;
+  const submitOthers = (id_argument) => {
+    let id = id_argument;
 
+    console.log(dropArea);
+    if (!id_argument) id = dropArea;
+    console.log(id, selectedOption, "IWOJEOQ");
     dataMock[`${id.slice(5) - 1}`].issues.push({
       id: "task",
-      name: selectedOption,
+      name: selectedOption || "Random",
     });
 
     let issues = dataMock[`${id.slice(5) - 2}`].issues;
@@ -64,39 +86,42 @@ const BoardItem = ({ title, tasksList, count, dataMock, setTasks }) => {
       }
     });
 
+    let issues_next = dataMock[`${id.slice(5)}`]?.issues;
+
+    if (issues_next)
+      issues_next.forEach((issue, i) => {
+        if (issue.name === selectedOption) {
+          issues_next.splice(i, 1);
+        }
+      });
+
     setTasks({ dataMock: dataMock });
     setIsAdd(false);
-  };
-
-  const handleDragOver = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    if (e.target.className === "board-item") {
-      // e.target.classList.toggle("red");
-    }
-  };
-
-  const handleDrop = (e) => {
-    console.log(e);
-    submitOthers(e.target.id);
   };
 
   const handleDragStart = (e) => {
     setSelectedOption(e.target.innerText);
   };
 
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    setDropArea(e.target.id);
+    // if (e.target.className === "board-item") {
+    //   // e.target.classList.toggle("red");
+    // }
+  };
+
   return (
     <div
       id={`list-${count}`}
-      className="board-item"
-      onDragStart={handleDragStart}
+      className={`board-item`}
       onDragOver={handleDragOver}
-      onDrop={handleDrop}
-      onDragEnd={(e) => {
-        setSelectedOption(e.target.innerText);
-        submitOthers(`list-${count + 1}`);
+      onDragEnd={() => {
+        submitOthers(dropArea);
       }}
+      onDragStart={handleDragStart}
     >
       <span className="board-item__title">{title}</span>
 

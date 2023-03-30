@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./TasksList.css";
 import Modal from "../Modal/Modal";
 
@@ -39,7 +39,6 @@ const TasksList = ({
           className="task"
           draggable
           onClick={() => openModal(item)}
-          onDragEnd={(e) => setSelectedOption(e.target.innerText)}
         >
           {item.name}
 

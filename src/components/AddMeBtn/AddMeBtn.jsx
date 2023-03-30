@@ -7,13 +7,11 @@ const AddMeBtn = ({ addBtnHandler, id, dataMock }) => {
 
   return (
     <>
-      <button
-        className={`add-btn ${
-          previewColumnTasksCount === 0 ? "add-btn-disabled" : ""
-        }`}
-        onClick={() => addBtnHandler(id)}
-        id={id}
-      >
+      {/*<button*/}
+      {/*  className={`add-btn ${*/}
+      {/*    previewColumnTasksCount === 0 ? "add-btn-disabled" : ""*/}
+      {/*  }`}*/}
+      <button className="add-btn" onClick={() => addBtnHandler(id)} id={id}>
         <img src="./plus.svg" alt="ic: plus-btn" className="add-btn__plus" />
         <p className="add-btn__txt">Add card</p>
       </button>

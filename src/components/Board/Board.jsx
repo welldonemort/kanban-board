@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import BoardItem from "../BoardItem/BoardItem.jsx";
 import "./Board.css";
 
 const Board = ({ dataMock, addBtnHandler, setTasks }) => {
   let count = 1;
+
+  const [dropArea, setDropArea] = useState("");
 
   return (
     <div className="board">
@@ -16,6 +18,8 @@ const Board = ({ dataMock, addBtnHandler, setTasks }) => {
           count={count++}
           dataMock={dataMock}
           setTasks={setTasks}
+          dropArea={dropArea}
+          setDropArea={setDropArea}
         />
       ))}
     </div>
