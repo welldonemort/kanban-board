@@ -68,33 +68,32 @@ const BoardItem = ({
   };
 
   const submitOthers = (id_argument) => {
+    // ID for adding task from a dropdown
     let id = id_argument;
-
-    console.log(dropArea);
+    // ID for adding task by drag-and-drop
     if (!id_argument) id = dropArea;
-    console.log(id, selectedOption, "IWOJEOQ");
+
+    // Add task to drop area OR from a dropdown
     dataMock[`${id.slice(5) - 1}`].issues.push({
       id: "task",
-      name: selectedOption || "Random",
+      name: selectedOption || "No description",
     });
 
-    let issues = dataMock[`${id.slice(5) - 2}`].issues;
+    // Delete task from other columns
+    // Tasks with the same title will be deleted
+    for (let i = 0; i < 4; i++) {
+      let issues_tmp = dataMock[i]?.issues;
 
-    issues.forEach((issue, i) => {
-      if (issue.name === selectedOption) {
-        issues.splice(i, 1);
+      if (issues_tmp && i !== id.slice(5) - 1) {
+        issues_tmp.forEach((issue, i) => {
+          if (issue.name === selectedOption) {
+            issues_tmp.splice(i, 1);
+          }
+        });
       }
-    });
+    }
 
-    let issues_next = dataMock[`${id.slice(5)}`]?.issues;
-
-    if (issues_next)
-      issues_next.forEach((issue, i) => {
-        if (issue.name === selectedOption) {
-          issues_next.splice(i, 1);
-        }
-      });
-
+    // Update global tasks array
     setTasks({ dataMock: dataMock });
     setIsAdd(false);
   };
@@ -108,9 +107,6 @@ const BoardItem = ({
     e.stopPropagation();
 
     setDropArea(e.target.id);
-    // if (e.target.className === "board-item") {
-    //   // e.target.classList.toggle("red");
-    // }
   };
 
   return (
