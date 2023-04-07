@@ -1,7 +1,7 @@
 import App from "../components/App/App";
 
-export const Component = ({ tasks, setTasks }) => (
+export const Component = ({ state, setTasks }) => (
   <div>
-    <App tasks={tasks} setTasks={setTasks} />
+    <App state={state} setTasks={setTasks} />
   </div>
 );

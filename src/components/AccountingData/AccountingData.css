@@ -1,0 +1,7 @@
+.accounting {
+  background-color: #0079bf;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 20px 32px;
+  min-height: 95vh;
+}

@@ -1,4 +1,5 @@
 const tasks_local = localStorage.getItem("tasks");
+const accounting_local = localStorage.getItem("accounting");
 
 let tasks = {
   dataMock: [
@@ -82,15 +83,50 @@ let tasks = {
   ],
 };
 
+let accounting = [
+  {
+    id: 1,
+    title: "storage",
+    items: [
+      { name: "Кошелек", balance: 0 },
+      { name: "Банковский счет", balance: 0 },
+    ],
+  },
+  {
+    id: 2,
+    title: "category",
+    items: [
+      { name: "Продукты", balance: 0 },
+      { name: "Еда вне дома", balance: 0 },
+      { name: "Транпорт", balance: 0 },
+      { name: "Покупки", balance: 0 },
+      { name: "Дом. хоз-во", balance: 0 },
+      { name: "Развлечения", balance: 0 },
+      { name: "Улуги", balance: 0 },
+    ],
+  },
+  {
+    id: 3,
+    title: "income",
+  },
+];
+
 if (tasks_local) {
   tasks = JSON.parse(tasks_local);
 }
 
-export const countReducer = (state = tasks, action) => {
+if (accounting_local) {
+  accounting = JSON.parse(accounting_local);
+}
+
+export const globalState = (state = { tasks, accounting }, action) => {
   switch (action.type) {
     case "SET_TASKS":
       localStorage.setItem("tasks", JSON.stringify(action.payload));
-      return action.payload;
+      return { tasks: action.payload, accounting };
+    case "SET_ACCOUNTING":
+      localStorage.setItem("accounting", JSON.stringify(action.payload));
+      return { tasks, accounting: action.payload };
     default:
       return state;
   }

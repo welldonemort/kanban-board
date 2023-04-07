@@ -5,6 +5,7 @@ import Board from "../Board/Board.jsx";
 import Footer from "../Footer/Footer.jsx";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import AccountingData from "../AccountingData/AccountingData";
 
 const NotFound = () => {
   return (
@@ -16,13 +17,16 @@ const NotFound = () => {
   );
 };
 
-const App = ({ tasks, setTasks }) => {
+const App = ({ state, setTasks }) => {
   const Home = () => {
+    console.log(state);
     return (
       <>
         <Header />
-        <Board dataMock={tasks.dataMock} setTasks={setTasks} />
-        <Footer dataMock={tasks.dataMock} />
+        {state.tasks && (
+          <Board dataMock={state.tasks.dataMock} setTasks={setTasks} />
+        )}
+        {state.tasks && <Footer dataMock={state.tasks.dataMock} />}
       </>
     );
   };
@@ -31,6 +35,7 @@ const App = ({ tasks, setTasks }) => {
     return (
       <>
         <Header />
+        <AccountingData accountingData={state.accounting} />
       </>
     );
   };

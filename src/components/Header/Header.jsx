@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <div className="header">
       <h1 className="header__title">
-        {pathname === "/" ? "Kanban Board" : "Accounting"}
+        {pathname === "/" ? "Kanban AccountingData" : "Accounting"}
       </h1>
 
       <Profile />

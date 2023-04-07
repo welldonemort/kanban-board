@@ -1,4 +1,4 @@
 import { legacy_createStore as createStore } from "redux";
-import { countReducer } from "./store/reducer";
+import { globalState } from "./store/reducer";
 
-export const store = createStore(countReducer);
+export const store = createStore(globalState);
