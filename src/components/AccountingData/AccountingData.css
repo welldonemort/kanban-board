@@ -1,7 +1,35 @@
 .accounting {
   background-color: #0079bf;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   padding: 20px 20px 32px;
   min-height: 95vh;
+}
+
+.stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ebecf0;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.stats__bold {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.stats__item {
+  display: flex;
+  align-items: center;
+}
+
+.stats__red {
+  color: red;
+}
+
+.stats__green {
+  color: green;
 }

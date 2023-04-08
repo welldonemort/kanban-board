@@ -88,8 +88,8 @@ let accounting = [
     id: 1,
     title: "storage",
     items: [
-      { name: "Кошелек", balance: 0 },
-      { name: "Банковский счет", balance: 0 },
+      { name: "Кошелек", balance: 0, icon: "wallet" },
+      { name: "Банковский счет", balance: 0, icon: "bank" },
     ],
   },
   {
@@ -105,10 +105,14 @@ let accounting = [
       { name: "Улуги", balance: 0 },
     ],
   },
-  {
-    id: 3,
-    title: "income",
-  },
+  // {
+  //   id: 3,
+  //   title: "income",
+  //   items: [
+  //     { name: "ЗП", balance: 0 },
+  //     { name: "Стипендия", balance: 0 },
+  //   ],
+  // },
 ];
 
 if (tasks_local) {

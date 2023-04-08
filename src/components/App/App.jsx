@@ -17,9 +17,8 @@ const NotFound = () => {
   );
 };
 
-const App = ({ state, setTasks }) => {
+const App = ({ state, setTasks, setAccounting }) => {
   const Home = () => {
-    console.log(state);
     return (
       <>
         <Header />
@@ -35,7 +34,10 @@ const App = ({ state, setTasks }) => {
     return (
       <>
         <Header />
-        <AccountingData accountingData={state.accounting} />
+        <AccountingData
+          accountingData={state.accounting}
+          setAccounting={setAccounting}
+        />
       </>
     );
   };
