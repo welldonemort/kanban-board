@@ -8,19 +8,21 @@ const Storage = ({
   isOpen,
   balance,
   setAccounting,
-  setCurrentName,
+  setCurrentColumn,
   setIsOpenItem,
   divideNumber,
+  selectedOption,
 }) => {
   const [currentStorage, setCurrentStorage] = useState(null);
   const onAddBalance = (storage) => {
+    setCurrentColumn("storage");
     setCurrentStorage(storage);
     setIsOpen(true);
   };
 
   const onAddStorage = () => {
     setIsOpenItem(true);
-    setCurrentName("storage");
+    setCurrentColumn("storage");
   };
 
   useEffect(() => {
@@ -31,6 +33,14 @@ const Storage = ({
       );
 
       if (!isOpen && obj_found) {
+        let delete_from = accountingData[0].items.find(
+          (income) => income.name === selectedOption
+        );
+
+        if (delete_from) {
+          delete_from.balance -= new_balance;
+        }
+
         obj_found.balance += new_balance;
         setAccounting([...accountingData]);
       }

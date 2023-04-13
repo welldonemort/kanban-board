@@ -1,6 +1,5 @@
 import "./ModalItem.css";
 import closePath from "../../../../assets/icons/close.svg";
-import { useState } from "react";
 
 const ModalItem = ({ currentName, setCurrentName, setIsOpen, onSubmit }) => {
   const closeModal = (e) => {

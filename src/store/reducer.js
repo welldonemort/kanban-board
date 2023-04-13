@@ -86,6 +86,14 @@ let tasks = {
 let accounting = [
   {
     id: 1,
+    title: "income",
+    items: [
+      { name: "ЗП", balance: 0 },
+      { name: "Стипендия", balance: 0 },
+    ],
+  },
+  {
+    id: 2,
     title: "storage",
     items: [
       { name: "Кошелек", balance: 0, icon: "wallet" },
@@ -93,7 +101,7 @@ let accounting = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     title: "category",
     items: [
       { name: "Продукты", balance: 0 },
@@ -105,14 +113,6 @@ let accounting = [
       { name: "Улуги", balance: 0 },
     ],
   },
-  // {
-  //   id: 3,
-  //   title: "income",
-  //   items: [
-  //     { name: "ЗП", balance: 0 },
-  //     { name: "Стипендия", balance: 0 },
-  //   ],
-  // },
 ];
 
 if (tasks_local) {

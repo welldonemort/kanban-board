@@ -8,19 +8,21 @@ const Category = ({
   isOpen,
   balance,
   setAccounting,
-  setCurrentName,
+  setCurrentColumn,
   setIsOpenItem,
   divideNumber,
+  selectedOption,
 }) => {
   const [currentCategory, setCurrentCategory] = useState(null);
   const onAddBalance = (category) => {
+    setCurrentColumn("category");
     setCurrentCategory(category);
     setIsOpen(true);
   };
 
   const onAddCategory = () => {
     setIsOpenItem(true);
-    setCurrentName("category");
+    setCurrentColumn("category");
   };
 
   useEffect(() => {
@@ -31,6 +33,14 @@ const Category = ({
       );
 
       if (!isOpen && obj_found) {
+        let delete_from = accountingData[1].items.find(
+          (income) => income.name === selectedOption
+        );
+
+        if (delete_from) {
+          delete_from.balance -= new_balance;
+        }
+
         obj_found.balance += new_balance;
         setAccounting([...accountingData]);
       }
@@ -60,7 +70,7 @@ const Category = ({
           </div>
         ))}
 
-      <button className="storage__item__add-btn" onClick={onAddCategory}>
+      <button className="category__item__add-btn" onClick={onAddCategory}>
         +
       </button>
     </div>

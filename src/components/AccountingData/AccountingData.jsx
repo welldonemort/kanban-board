@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./AccountingData.css";
 import Storage from "../Accounting/Storage/Storage";
 import Category from "../Accounting/Category/Category";
-// import Income from "../Accounting/Income/Income";
+import Income from "../Accounting/Income/Income";
 import ModalBalance from "../Accounting/components/ModalBalance/ModalBalance";
 import ModalItem from "../Accounting/components/ModalItem/ModalItem";
 
@@ -19,8 +19,27 @@ const AccountingData = ({ accountingData, setAccounting }) => {
   const [outcome, setOutcome] = useState(0);
   const [total, setTotal] = useState(0);
 
+  const [currentOptions, setCurrentOptions] = useState(null);
+  const [selectedOption, setSelectedOption] = useState("");
+
   const getComponentByID = (id) => {
     if (id === 1)
+      return (
+        <Income
+          data={accountingData[id - 1]}
+          key={`item-${id}`}
+          accountingData={accountingData}
+          balance={balance}
+          setIsOpen={setIsOpen}
+          setAccounting={setAccounting}
+          isOpen={isOpen}
+          setBalance={setBalance}
+          setCurrentColumn={setCurrentColumn}
+          setIsOpenItem={setIsOpenItem}
+          divideNumber={divideNumber}
+        />
+      );
+    else if (id === 2)
       return (
         <Storage
           data={accountingData[id - 1]}
@@ -31,12 +50,13 @@ const AccountingData = ({ accountingData, setAccounting }) => {
           setAccounting={setAccounting}
           isOpen={isOpen}
           setBalance={setBalance}
-          setCurrentName={setCurrentColumn}
+          setCurrentColumn={setCurrentColumn}
           setIsOpenItem={setIsOpenItem}
           divideNumber={divideNumber}
+          selectedOption={selectedOption}
         />
       );
-    else if (id === 2)
+    else if (id === 3)
       return (
         <Category
           data={accountingData[id - 1]}
@@ -47,12 +67,12 @@ const AccountingData = ({ accountingData, setAccounting }) => {
           setAccounting={setAccounting}
           isOpen={isOpen}
           setBalance={setBalance}
-          setCurrentName={setCurrentColumn}
+          setCurrentColumn={setCurrentColumn}
           setIsOpenItem={setIsOpenItem}
           divideNumber={divideNumber}
+          selectedOption={selectedOption}
         />
       );
-    // else return <Income data={accountingData[id - 1]} key={`item-${id}`} />;
   };
 
   const onSubmit = () => {
@@ -96,6 +116,16 @@ const AccountingData = ({ accountingData, setAccounting }) => {
     setTotal(income - outcome);
   }, [accountingData]);
 
+  useEffect(() => {
+    if (currentColumn === "storage") {
+      setCurrentOptions(accountingData[0]);
+    } else if (currentColumn === "category") {
+      setCurrentOptions(accountingData[1]);
+    } else {
+      setCurrentOptions(null);
+    }
+  }, [currentColumn]);
+
   return (
     <div className="accounting">
       {isOpen && (
@@ -104,6 +134,11 @@ const AccountingData = ({ accountingData, setAccounting }) => {
           balance={balance}
           setBalance={setBalance}
           onSubmit={onSubmit}
+          currentColumn={currentColumn}
+          accountingData={accountingData}
+          options={currentOptions}
+          selectedOption={selectedOption}
+          setSelectedOption={setSelectedOption}
         />
       )}
 

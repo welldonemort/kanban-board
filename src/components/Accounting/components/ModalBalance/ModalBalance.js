@@ -1,7 +1,15 @@
 import "./ModalBalance.css";
 import closePath from "../../../../assets/icons/close.svg";
 
-const ModalBalance = ({ setIsOpen, balance, setBalance, onSubmit }) => {
+const ModalBalance = ({
+  setIsOpen,
+  balance,
+  setBalance,
+  onSubmit,
+  options,
+  selectedOption,
+  setSelectedOption,
+}) => {
   const closeModal = (e) => {
     if (e.target.id === "modal-holder" || e.target.id === "modal-close") {
       setIsOpen(false);
@@ -31,6 +39,24 @@ const ModalBalance = ({ setIsOpen, balance, setBalance, onSubmit }) => {
             placeholder="Сумма (тг)"
             onChange={(e) => setBalance(+e.target.value)}
           />
+
+          {selectedOption}
+
+          {options && (
+            <select
+              name="dropdown-from"
+              id={`${options.id}-dropdown-from`}
+              className="dropdown"
+              value={selectedOption}
+              onChange={(e) => setSelectedOption(e.target.value)}
+            >
+              {options.items.map((option, idx) => (
+                <option value={option.name} key={`option-from-${idx}`}>
+                  {option.name}
+                </option>
+              ))}
+            </select>
+          )}
         </div>
 
         <div className="modal-actions">
