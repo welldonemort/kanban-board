@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Category.css";
+import { useNotificationCenter } from "react-toastify/addons/use-notification-center";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Category = ({
   accountingData,
@@ -12,8 +15,15 @@ const Category = ({
   setIsOpenItem,
   divideNumber,
   selectedOption,
+  limit,
+  outcome,
 }) => {
   const [currentCategory, setCurrentCategory] = useState(null);
+
+  const showErrorToast = () => {
+    toast.error("Вы превысили лимит! Впишите сумму меньше.");
+  };
+
   const onAddBalance = (category) => {
     setCurrentColumn("category");
     setCurrentCategory(category);
@@ -27,12 +37,18 @@ const Category = ({
 
   useEffect(() => {
     let new_balance = +balance;
+
     if (typeof new_balance === "number" && currentCategory && balance !== 0) {
       let obj_found = data.items.find(
         (obj) => obj.name === currentCategory.name
       );
 
       if (!isOpen && obj_found) {
+        if (Number(outcome) + new_balance > limit) {
+          showErrorToast();
+          return;
+        }
+
         let delete_from = accountingData[1].items.find(
           (income) => income.name === selectedOption
         );
@@ -70,6 +86,8 @@ const Category = ({
 
   return (
     <div className="category">
+      <ToastContainer />
+
       {data.items &&
         data.items.map((category) => (
           <div

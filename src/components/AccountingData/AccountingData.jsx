@@ -79,6 +79,8 @@ const AccountingData = ({ accountingData, setAccounting }) => {
           setIsOpenItem={setIsOpenItem}
           divideNumber={divideNumber}
           selectedOption={selectedOption}
+          limit={limitDay}
+          outcome={outcome}
         />
       );
   };

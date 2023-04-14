@@ -64,7 +64,7 @@ const Income = ({
         data.items.map((income) => (
           <div
             className="income__item"
-            key={`s-${income.name}`}
+            key={`i-${income.name}`}
             onClick={() => onAddBalance(income)}
           >
             <p className="income__item__title">{income.name}</p>
