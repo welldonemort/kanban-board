@@ -36,7 +36,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: all 1s;
+  margin-bottom: 10px;
 }
 
 .accounting-right__info > p:first-child:hover {
@@ -70,4 +70,35 @@
 
 .stats__green {
   color: green;
+}
+
+.transactions {
+  display: flex;
+  flex-direction: column;
+  background: #ebecf0;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.transactions__title {
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.transactions__blank {
+  color: #5e6c84;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.transactions__table th {
+  width: 20%;
+  padding: 10px;
+}
+
+.transactions__table td {
+  text-align: center;
+  padding: 10px;
 }

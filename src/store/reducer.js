@@ -110,13 +110,18 @@ let accounting = [
       { name: "Покупки", balance: 0 },
       { name: "Дом. хоз-во", balance: 0 },
       { name: "Развлечения", balance: 0 },
-      { name: "Улуги", balance: 0 },
+      { name: "Услуги", balance: 0 },
     ],
   },
   {
     id: 4,
     title: "limit",
     value: 200000,
+  },
+  {
+    id: 5,
+    title: "transactions",
+    history: [],
   },
 ];
 

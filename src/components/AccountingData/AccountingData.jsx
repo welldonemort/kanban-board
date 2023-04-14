@@ -241,13 +241,41 @@ const AccountingData = ({ accountingData, setAccounting }) => {
 
           <Chart
             type="donut"
-            height="500"
+            height="340"
+            className="donut"
             series={accountingData[2].items.map((item) => item.balance)}
             options={{
               labels: accountingData[2].items.map((item) => item.name),
             }}
           />
         </div>
+      </div>
+
+      <div className="transactions">
+        <p className="transactions__title">Транзакции</p>
+
+        {accountingData[4].history.length ? (
+          <table className="transactions__table">
+            <tr>
+              <th>Откуда</th>
+              <th>Куда</th>
+              <th>Сумма</th>
+              <th>Дата</th>
+              <th>Тип перевода</th>
+            </tr>
+            {accountingData[4].history.map((row) => (
+              <tr>
+                <td>{row.from || "-"}</td>
+                <td>{row.to || "-"}</td>
+                <td>{`${divideNumber(row.amount)} ₸` || "-"}</td>
+                <td>{row.date || "-"}</td>
+                <td>{row.type || "-"}</td>
+              </tr>
+            ))}
+          </table>
+        ) : (
+          <p className="transactions__blank">Нет данных</p>
+        )}
       </div>
     </div>
   );

@@ -17,11 +17,11 @@
   height: 5px;
   width: 10px;
 }
-        
+
 .category::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-color: #0067a3;
-    width: 10px;
+  border-radius: 10px;
+  background-color: #0067a3;
+  width: 10px;
 }
 
 .category::-webkit-scrollbar-thumb:hover {
@@ -36,7 +36,6 @@
   flex-direction: column;
   align-items: center;
   cursor: pointer;
-  transition: all 0.3s;
   margin-right: 10px;
   border-radius: 10px;
   border: 1px solid black;
@@ -64,13 +63,12 @@
   border: 1px solid black;
   font-size: 20px;
   margin-left: 15px;
-  transition: all 0.3s;
 }
 
 .category__item__title {
   width: 100%;
   text-overflow: ellipsis;
-  overflow: hidden; 
+  overflow: hidden;
   text-align: center;
 }
 

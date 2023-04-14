@@ -32,6 +32,27 @@ const Income = ({
 
       if (!isOpen && obj_found) {
         obj_found.balance += new_balance;
+
+        const current_date = new Date();
+        const datetime =
+          current_date.getDate() +
+          "/" +
+          (current_date.getMonth() + 1) +
+          "/" +
+          current_date.getFullYear() +
+          ", " +
+          current_date.getHours() +
+          ":" +
+          current_date.getMinutes();
+
+        accountingData[4].history.push({
+          from: null,
+          to: obj_found.name,
+          date: datetime,
+          amount: new_balance,
+          type: "Пополнение",
+        });
+
         setAccounting([...accountingData]);
       }
     }
