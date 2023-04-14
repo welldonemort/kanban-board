@@ -59,6 +59,31 @@
   background-position: right center;
 }
 
+.dropdown-balance {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  color: #000000;
+  background: #ffffff;
+  border-radius: 5px;
+  border: 1px solid black;
+  margin-top: 15px;
+  padding: 8px;
+  width: 100%;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  background: url("./arrow-down-black.svg") #fff;
+  background-repeat: no-repeat;
+  background-size: 15px 8px;
+  background-position: 97%, center;
+}
+
 .dropdown:hover {
   background-color: rgb(206, 206, 206);
 }
@@ -79,4 +104,8 @@
 
 .error-page .text {
   margin-bottom: 10px;
+}
+
+.bold {
+  font-weight: bold;
 }

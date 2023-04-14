@@ -79,11 +79,6 @@
   transition: all 0.3s;
 }
 
-.modal-actions__btn-disabled {
-  pointer-events: none;
-  opacity: 0.7;
-}
-
 .modal-actions__btn:hover {
   opacity: 0.7;
 }

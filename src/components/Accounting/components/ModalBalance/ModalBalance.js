@@ -10,25 +10,26 @@ const ModalBalance = ({
   selectedOption,
   setSelectedOption,
 }) => {
-  const closeModal = (e) => {
-    if (e.target.id === "modal-holder" || e.target.id === "modal-close") {
-      setIsOpen(false);
-    }
-  };
+  // const closeModal = (e) => {
+  //   if (e.target.id === "modal-holder" || e.target.id === "modal-close") {
+  //     setIsOpen(false);
+  //   }
+  // };
 
   return (
-    <div id="modal-holder" className="modal-holder" onClick={closeModal}>
+    // <div id="modal-holder" className="modal-holder" onClick={closeModal}>
+    <div id="modal-holder" className="modal-holder">
       <div className="modal">
         <div className="modal-header">
           <span>Введите сумму</span>
 
-          <img
+          {/* <img
             id="modal-close"
             src={closePath}
             alt="ic-close"
             className="modal-close"
             onClick={closeModal}
-          />
+          /> */}
         </div>
 
         <div className="modal-content">
@@ -40,13 +41,11 @@ const ModalBalance = ({
             onChange={(e) => setBalance(+e.target.value)}
           />
 
-          {selectedOption}
-
           {options && (
             <select
               name="dropdown-from"
               id={`${options.id}-dropdown-from`}
-              className="dropdown"
+              className="dropdown-balance"
               value={selectedOption}
               onChange={(e) => setSelectedOption(e.target.value)}
             >
@@ -60,7 +59,12 @@ const ModalBalance = ({
         </div>
 
         <div className="modal-actions">
-          <button className="modal-actions__btn" onClick={onSubmit}>
+          <button
+            className={`modal-actions__btn ${
+              !balance ? "modal-actions__btn-disabled" : ""
+            }`}
+            onClick={onSubmit}
+          >
             Подтвердить
           </button>
         </div>

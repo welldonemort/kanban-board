@@ -113,6 +113,11 @@ let accounting = [
       { name: "Улуги", balance: 0 },
     ],
   },
+  {
+    id: 4,
+    title: "limit",
+    value: 200000,
+  },
 ];
 
 if (tasks_local) {

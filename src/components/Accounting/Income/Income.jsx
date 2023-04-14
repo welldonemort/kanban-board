@@ -26,6 +26,7 @@ const Income = ({
 
   useEffect(() => {
     let new_balance = +balance;
+
     if (typeof new_balance === "number" && currentIncome && balance !== 0) {
       let obj_found = data.items.find((obj) => obj.name === currentIncome.name);
 

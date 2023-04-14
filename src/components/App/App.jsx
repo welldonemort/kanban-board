@@ -34,6 +34,7 @@ const App = ({ state, setTasks, setAccounting }) => {
     return (
       <>
         <Header />
+
         <AccountingData
           accountingData={state.accounting}
           setAccounting={setAccounting}

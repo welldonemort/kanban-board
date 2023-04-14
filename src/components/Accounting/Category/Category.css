@@ -1,13 +1,37 @@
 .category {
+  width: 100%;
+  overflow-x: scroll;
   display: flex;
   align-items: center;
   background: #ebecf0;
   border-radius: 10px;
   padding: 10px;
-  margin-bottom: 10px;
+}
+
+.category::-webkit-scrollbar {
+  width: 20px;
+}
+
+.category::-webkit-scrollbar-track {
+  padding: 10px;
+  height: 5px;
+  width: 10px;
+}
+        
+.category::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #0067a3;
+    width: 10px;
+}
+
+.category::-webkit-scrollbar-thumb:hover {
+  opacity: 0.7;
 }
 
 .category__item {
+  white-space: nowrap;
+  min-width: 120px;
+  width: max-content;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,7 +41,6 @@
   border-radius: 10px;
   border: 1px solid black;
   padding: 10px;
-  min-width: 100px;
 }
 
 .category__item:hover {
@@ -31,7 +54,7 @@
 }
 
 .category__item__add-btn {
-  width: 30px;
+  min-width: 30px;
   height: 30px;
   display: flex;
   align-items: center;
@@ -42,6 +65,13 @@
   font-size: 20px;
   margin-left: 15px;
   transition: all 0.3s;
+}
+
+.category__item__title {
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden; 
+  text-align: center;
 }
 
 .category__item__add-btn:hover {
