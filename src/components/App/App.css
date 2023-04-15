@@ -118,3 +118,9 @@
 .bold {
   font-weight: bold;
 }
+
+.title-main {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #ebecf0;
+}
